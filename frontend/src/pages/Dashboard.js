@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Package, Users, ShoppingCart, AlertTriangle } from 'lucide-react'
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  BarChart, Bar, Cell, PieChart, Pie, Legend
+  BarChart, Bar, Cell, PieChart, Pie
 } from 'recharts'
 import {
   getDashboardStats, getOrdersLast7Days, getStockHealth,
