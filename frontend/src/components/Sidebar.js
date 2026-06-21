@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import { LayoutDashboard, Package, Users, ShoppingCart, Sun, Moon, Box } from 'lucide-react'
+import { LayoutDashboard, Package, Users, ShoppingCart, Sun, Moon, Box, X } from 'lucide-react'
 
 const navItems = [
   { to: '/', label: 'Dashboard', icon: LayoutDashboard },
@@ -9,7 +9,7 @@ const navItems = [
   { to: '/orders', label: 'Orders', icon: ShoppingCart },
 ]
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, onClose }) {
   const [isLight, setIsLight] = useState(false)
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function Sidebar() {
   }, [isLight])
 
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar${isOpen ? ' open' : ''}`}>
       <div className="sidebar-header">
         <div className="logo-wrap">
           <div className="logo-icon">
@@ -31,6 +31,9 @@ export default function Sidebar() {
         <button className="theme-btn" title="Toggle theme" onClick={() => setIsLight(l => !l)}>
           {isLight ? <Moon size={15} /> : <Sun size={15} />}
         </button>
+        <button className="sidebar-close-btn" onClick={onClose}>
+          <X size={18} />
+        </button>
       </div>
 
       <nav className="sidebar-nav">
@@ -41,6 +44,7 @@ export default function Sidebar() {
             to={to}
             end={to === '/'}
             className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}
+            onClick={onClose}
           >
             <Icon size={17} />
             {label}
@@ -53,7 +57,7 @@ export default function Sidebar() {
           <div className="user-avatar">RS</div>
           <div className="user-info">
             <h4>Ridhi Sambhor</h4>
-            <p>Store Manager</p>
+            <p>Admin</p>
           </div>
         </div>
         <div className="status-bar">
